@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Friendship Day, Khushboo!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #f5c842;
+      --blush: #f7a8b8;
+      --soft-pink: #fde8ef;
+      --deep-rose: #c0395a;
+      --cream: #fff8f0;
+      --text: #3a1a2a;
+    }
+
+    body {
+      background: var(--cream);
+      font-family: 'Lato', sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── Floating Hearts Background ── */
+    .hearts-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      bottom: -60px;
+      font-size: 1.4rem;
+      animation: floatUp linear infinite;
+      opacity: 0;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, #fde8ef 0%, var(--cream) 70%);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--deep-rose);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.35rem 1.1rem;
+      border-radius: 999px;
+      margin-bottom: 1.6rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      line-height: 1.1;
+      color: var(--deep-rose);
+      animation: fadeDown 1s 0.2s ease both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+      -webkit-text-stroke: 1px #c0395a;
+    }
+
+    .hero .subtitle {
+      margin-top: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      color: #7a3555;
+      letter-spacing: 0.04em;
+      animation: fadeDown 1s 0.4s ease both;
+    }
+
+    .divider {
+      margin: 2rem auto;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      animation: fadeDown 1s 0.5s ease both;
+    }
+
+    .scroll-hint {
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #b06080;
+      animation: bounce 2s 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(6px); }
+    }
+
+    /* ── Sections ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--deep-rose);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #5a2a3a;
+      font-weight: 300;
+    }
+
+    /* ── Card Grid ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: #fff;
+      border: 1.5px solid #f5d0df;
+      border-radius: 20px;
+      padding: 2rem 1.2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(192,57,90,0.12);
+    }
+    .card .icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--deep-rose);
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #7a3555;
+      font-weight: 300;
+    }
+
+    /* ── Quote Band ── */
+    .quote-band {
+      background: linear-gradient(135deg, var(--deep-rose) 0%, #9b1f40 100%);
+      color: #fff;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .quote-band blockquote {
+      max-width: 680px;
+      margin: 0 auto;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-style: italic;
+      line-height: 1.55;
+    }
+    .quote-band cite {
+      display: block;
+      margin-top: 1.2rem;
+      font-family: 'Lato', sans-serif;
+      font-style: normal;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    /* ── Timeline / Memories ── */
+    .timeline {
+      max-width: 640px;
+      margin: 3rem auto 0;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blush), var(--deep-rose), var(--blush));
+      transform: translateX(-50%);
+    }
+    .tl-item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      align-items: flex-start;
+    }
+    .tl-item:nth-child(odd)  { flex-direction: row-reverse; text-align: right; }
+    .tl-dot {
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--deep-rose);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 0 0 5px var(--soft-pink);
+      position: relative; z-index: 1;
+    }
+    .tl-content h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--deep-rose);
+      margin-bottom: 0.3rem;
+    }
+    .tl-content p {
+      font-size: 0.87rem;
+      line-height: 1.6;
+      color: #7a3555;
+      font-weight: 300;
+    }
+
+    /* ── Big Message ── */
+    .big-message {
+      background: var(--soft-pink);
+      border-radius: 32px;
+      padding: 3.5rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      border: 2px dashed var(--blush);
+    }
+    .big-message .emoji-row { font-size: 2rem; margin-bottom: 1rem; letter-spacing: 0.3em; }
+    .big-message h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      color: var(--deep-rose);
+      margin-bottom: 1rem;
+    }
+    .big-message p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #5a2a3a;
+      font-weight: 300;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: 0.8rem;
+      color: #b06080;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 540px) {
+      .timeline::before { left: 18px; }
+      .tl-item, .tl-item:nth-child(odd) { flex-direction: row; text-align: left; }
+      .tl-item:nth-child(odd) .tl-content { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating Hearts -->
+<div class="hearts-bg" id="heartsContainer"></div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <span class="badge">✦ Happy Friendship Day ✦</span>
+  <h1>To My Dearest<br><em>Khushboo</em></h1>
+  <p class="subtitle">Because some friendships are rare, precious & forever 💛</p>
+  <div class="divider"></div>
+  <p class="scroll-hint">↓ scroll to explore ↓</p>
+</section>
+
+<!-- ── WHAT IS FRIENDSHIP ── -->
+<section>
+  <div class="section-inner reveal">
+    <p class="section-label">✦ A Celebration ✦</p>
+    <h2 class="section-title">Friendship Day — A Day Just for Us</h2>
+    <p class="section-body">
+      Friendship Day is celebrated every year on the first Sunday of August — a day the world pauses to honour the beautiful bonds that make life worth living. And today, I want to celebrate the most wonderful friend in my world: <strong>Khushboo Kaboro</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- ── CARDS ── -->
+<section style="background:#fff8f5; padding-top:3rem; padding-bottom:4rem;">
+  <div class="section-inner reveal">
+    <p class="section-label">✦ What You Mean to Me ✦</p>
+    <h2 class="section-title">The Friend Everyone Deserves</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">🌸</div>
+        <h3>Kindness</h3>
+        <p>Your warmth lights up every room you walk into. You make everyone around you feel seen and loved.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🌟</div>
+        <h3>Loyalty</h3>
+        <p>You show up — in good times and bad. A true friend never runs away when things get tough.</p>
+      </div>
+      <div class="card">
+        <div class="icon">😂</div>
+        <h3>Laughter</h3>
+        <p>No one makes me laugh like you do. Life is so much lighter and brighter with you in it.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Understanding</h3>
+        <p>You listen without judging. You understand without me even finishing my sentences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUOTE BAND ── -->
+<div class="quote-band reveal">
+  <blockquote>
+    "A real friend is one who walks in when the rest of the world walks out."
+    <cite>— Walter Winchell</cite>
+  </blockquote>
+</div>
+
+<!-- ── MEMORIES TIMELINE ── -->
+<section>
+  <div class="section-inner reveal">
+    <p class="section-label">✦ Our Story ✦</p>
+    <h2 class="section-title">Little Moments, Big Memories</h2>
+    <p class="section-body">Every great friendship is built on a thousand tiny moments that together create something extraordinary.</p>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-dot">✨</div>
+        <div class="tl-content">
+          <h4>The Day We Met</h4>
+          <p>Some meetings are just ordinary. Ours was the beginning of something magical.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot">🎭</div>
+        <div class="tl-content">
+          <h4>The Crazy Adventures</h4>
+          <p>From random plans to spontaneous late-night talks — every adventure with you is unforgettable.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot">🤝</div>
+        <div class="tl-content">
+          <h4>Being There for Each Other</h4>
+          <p>Through exams, heartbreaks, family stress and everything in between — we always had each other.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot">🌈</div>
+        <div class="tl-content">
+          <h4>Today & Always</h4>
+          <p>And here we are — still side by side, still laughing, still growing. Here's to forever!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BIG MESSAGE ── -->
+<section style="padding-top:2rem;">
+  <div class="big-message reveal">
+    <div class="emoji-row">💌 🌷 💛 🌷 💌</div>
+    <h2>A Note from My Heart</h2>
+    <p>
+      Khushboo, you are not just a friend — you are a blessing I am grateful for every single day.
+      Thank you for being the person who truly gets me, who cheers me on, who tells me the truth
+      even when it's hard, and who stays no matter what.<br><br>
+      On this Friendship Day, I want you to know: <strong>you are irreplaceable.</strong>
+      Our friendship is one of the most precious things in my life, and I hope we grow old
+      together, still laughing at the same silly jokes. 🥹💛
+    </p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  Made with 💛 &amp; love · Happy Friendship Day, Khushboo Kaboro 🌸
+</footer>
+
+<script>
+  // ── Floating Hearts ──
+  const container = document.getElementById('heartsContainer');
+  const symbols = ['❤️','💛','🌸','✨','💕','🌷','💗','⭐'];
+  for (let i = 0; i < 28; i++) {
+    const h = document.createElement('span');
+    h.className = 'heart';
+    h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.fontSize = (0.9 + Math.random() * 1.4) + 'rem';
+    const dur = 8 + Math.random() * 12;
+    const delay = Math.random() * 12;
+    h.style.animation = `floatUp ${dur}s ${delay}s linear infinite`;
+    container.appendChild(h);
+  }
+
+  // ── Scroll Reveal ──
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => obs.observe(r));
+</script>
+</body>
+</html>
